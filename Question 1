@@ -1,0 +1,57 @@
+import java.util.*;
+
+class NoStudentsException extends Exception {
+    NoStudentsException(String msg) {
+        super(msg);
+    }
+}
+
+public class StudentDemo {
+    private ArrayList<String> list = new ArrayList<>();
+
+    void add(String name) {
+        list.add(name);
+    }
+
+    void remove(String name) {
+        list.remove(name);
+    }
+
+    void show() throws NoStudentsException {
+        if (list.isEmpty()) {
+            throw new NoStudentsException("Student list is empty!");
+        }
+        Collections.sort(list);
+        System.out.println(list);
+    }
+
+    public static void main(String[] args) {
+        StudentDemo s = new StudentDemo();
+
+        System.out.println("Adding names: Ashmit, Shashwat, Sameer, Shivang");
+        s.add("Ashmit");
+        s.add("Shashwat");
+        s.add("Sameer");
+        s.add("Shivang");
+
+        try {
+            System.out.print("Sorted names: ");
+            s.show();
+
+            System.out.println("Removing Sameer...");
+            s.remove("Sameer");
+
+            System.out.print("Sorted names after removal: ");
+            s.show();
+
+            System.out.println("Trying to show list after removing everyone...");
+            s.remove("Ashmit");
+            s.remove("Shashwat");
+            s.remove("Shivang");
+            s.show();
+
+        } catch (NoStudentsException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
