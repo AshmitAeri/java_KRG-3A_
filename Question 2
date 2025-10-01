@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class AverageCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> numbers = new ArrayList<>();
+        String input;
+
+        System.out.println("Enter numbers (type 'done' to finish):");
+
+        while (true) {
+            input = sc.next();
+            if (input.equalsIgnoreCase("done")) {
+                break;
+            }
+            try {
+                int num = Integer.parseInt(input);
+                numbers.add(num);
+            } catch (Exception e) {
+                System.out.println("Error: Invalid input, please enter a valid integer.");
+            }
+        }
+
+        if (numbers.size() == 0) {
+            System.out.println("Error: No numbers entered, cannot calculate average.");
+        } else {
+            int sum = 0;
+            for (int i = 0; i < numbers.size(); i++) {
+                sum += numbers.get(i);
+            }
+            double average = (double) sum / numbers.size();
+            System.out.println("Average: " + average);
+        }
+    }
+}
